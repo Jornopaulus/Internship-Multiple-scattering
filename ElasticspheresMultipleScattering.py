@@ -59,10 +59,10 @@ c_L_i = 2490.0
 c_T_i = 1250.0
 
 
-Flag = "Tungsten Carbine" # Steel, Lead, Glass
+Flag = "Tungsten Carbide" # Steel, Lead, Glass
 
 
-if Flag == "Tungsten Carbine":
+if Flag == "Tungsten Carbide":
     rho_p = 15250.0 #kg/m^3
     R_0 = 200*10**-6  #"m"
     mhu_p = 243.0e9
@@ -322,19 +322,19 @@ plt.figure(7)
 for ii in range(Nn):
     #plt.suptitle("Transmission and reflection coefficients due to Longitudinal wave for " + Flag +" radius of particle = 0.2mm", fontsize=50)
     plt.subplot(211)
-    plt.suptitle("Transmission and reflection for elastic spheres, "+ Flag +" , $d = R(1+\\beta)$" , fontsize=40)
+    plt.suptitle("Transmission and reflection for "+ Flag +" (elastic spheres) , $d = R(1+\\beta)$" , fontsize=45)
     plt.plot(f/f_res,abs(T_self[ii,:]), label=str(Beta[ii])+ "$ = \\beta $", linewidth=3.0)
     plt.tick_params(labelsize=40)
     #plt.xlim(0,2.1)
-    plt.ylabel("T($\omega$)", fontsize=60)
-    plt.xlabel("$f/f_{res}$", fontsize=60)
+    plt.ylabel("T", fontsize=60)
+    #plt.xlabel("$f/f_{res}$", fontsize=60)
     plt.legend( fontsize=40, loc = 'best')
     plt.subplot(212)
     plt.plot( f/f_res ,abs(R_self[ii,:]), label=str(Beta[ii])+ "$ = \\beta $", linewidth=3.0)
     plt.tick_params(labelsize=40)
     #plt.xlim(0,2.4)
     plt.xlabel("$f/f_{res}$", fontsize=60)
-    plt.ylabel("R($\omega$)", fontsize=60)
+    plt.ylabel("R", fontsize=60)
     plt.legend( fontsize=40, loc = 'best')
 plt.savefig("Reflec_transmis_Elastic_Spheres"+ Flag +".jpg")
 

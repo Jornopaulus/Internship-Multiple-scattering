@@ -55,7 +55,7 @@ c_L_i = 2490.0
 c_T_i = 1250.0
 
 
-Flag = "Tungsten Carbine" # Steel, Lead, Glass
+Flag = "Lead" # Steel, Lead, Glass
 
 
 if Flag == "Tungsten Carbine":
@@ -67,7 +67,9 @@ if Flag == "Tungsten Carbine":
 if Flag == "Lead":
     rho_p = 11310.0 #kg/m^3
     R_0 = 200*10**-6  #"m"
-
+    mhu_p = 4.0e9
+    lamda_p = 26.76923e9
+    
 if Flag == "Glass":
     rho_p = 2490.0 #kg/m^3
     R_0 = 5.6*10**-4  #"m"
@@ -110,7 +112,7 @@ for N in range(Nn):
         K_L_p = k_L_p * R_0
         K_T_p = k_T_p * R_0
         
-        for n  = 1
+        n=1
         hnL_n = spherical_hn1(n,K_L)
         hnT_n = spherical_hn1(n, K_T)
         hnL_1n = spherical_hn1((n+1),K_L)
@@ -142,13 +144,6 @@ for N in range(Nn):
         Tau_T_p = mhu_p*((2*n**2-2 - K_T_p**2)*jnT_np + 2*K_T_p*jnT_1np)
        
         Sig_S_p = 1j*mhu_p*K_T_p*((n-1)*jnT_np- K_T_p*jnT_1np)
-        
-        
-        
-        
-        
-        
-        
         
         S_0p = 0.0
         S_1p = 0.0

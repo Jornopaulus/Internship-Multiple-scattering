@@ -62,10 +62,10 @@ c_L_i = 2490.0
 c_T_i = 1250.0
 
 
-Flag = "Tungsten Carbine" # Steel, Lead, Glass
+Flag = "Tungsten Carbide" # Steel, Lead, Glass
 
 
-if Flag == "Tungsten Carbine":
+if Flag == "Tungsten Carbide":
     rho_p = 15250.0 #kg/m^3
     R_0 = 200*10**-6  #"m"
     mhu_p = 243.0e9
@@ -74,6 +74,9 @@ if Flag == "Tungsten Carbine":
 if Flag == "Lead":
     rho_p = 11310.0 #kg/m^3
     R_0 = 200*10**-6  #"m"
+    mhu_p = 4.0e9
+    lamda_p = 26.76923e9
+    
 
 if Flag == "Glass":
     rho_p = 2490.0 #kg/m^3
@@ -278,25 +281,23 @@ plt.figure(1)
 for ii in range(Nn):
     #plt.suptitle("Transmission and reflection coefficients due to Longitudinal wave for " + Flag +" radius of particle = 0.2mm", fontsize=50)
     plt.subplot(211)
-    plt.suptitle("Transmission and reflection for rigid spheres "+ Flag +" , $d = R*(1+\\beta)$" , fontsize=40)
+    plt.suptitle("Transmission and reflection for "+ Flag +" (rigid spheres), $d = R(1+\\beta)$" , fontsize=45)
     plt.plot(f/f_res,abs(T_omegastore[ii,:]), label=str(Beta[ii])+ "$ = \\beta $", linewidth=3.0)
     plt.tick_params(labelsize=40)
     #plt.xlim(0,2.1)
-    plt.ylabel("T($\omega$)", fontsize=60)
-    plt.xlabel("$f/f_{res}$", fontsize=60)
+    plt.ylabel("T", fontsize=60)
+    #plt.xlabel("$f/f_{res}$", fontsize=60)
     plt.legend( fontsize=40, loc = 'best')
     plt.subplot(212)
     plt.plot( f/f_res ,abs(R_omegastore[ii,:]), label=str(Beta[ii])+ "$ = \\beta $", linewidth=3.0)
     plt.tick_params(labelsize=40)
     #plt.xlim(0,2.4)
     plt.xlabel("$f/f_{res}$", fontsize=60)
-    plt.ylabel("R($\omega$)", fontsize=60)
+    plt.ylabel("R", fontsize=60)
     plt.legend( fontsize=40, loc = 'best')
 plt.savefig("Reflec_transmis_collectiontransmission"+ Flag +".jpg")
 
 
-
- 
 plt.figure(2)
 for q in range(1,Nn):
     plt.title("Rigid body translation", fontsize=40)
@@ -310,7 +311,7 @@ if os.path.exists("./RigidBodyTrans.jpg"):
     
 plt.figure(3)
 for z in range(Nn):   
-    plt.suptitle("Lattice sum S_1s due to Longitudinal wave, $d = R*(1+\\beta)$", fontsize=50)
+    plt.suptitle("Lattice sum S_1s due to Longitudinal wave, $d = R(1+\\beta)$", fontsize=45)
     plt.plot(abs(f/f_res), abs(S_1s_store[z,:]), label=str(Beta[z])+ "$ = \\beta $", linewidth=3.0)
     plt.ylim(-0.5,3.5)
     plt.ylabel("Magnitude", fontsize=60)
@@ -320,20 +321,19 @@ for z in range(Nn):
 plt.savefig("LatticeSums.jpg") 
 
 
-
-plt.figure(4)
-for z in range(1,Nn):
-    plt.subplot(311)
-    plt.suptitle("Reigleight limit", fontsize=40)
-    plt.plot(Omega[0,:], abs(R[z,:]), linewidth=3.0)
-    plt.ylabel("R($\omega$)", fontsize=40)
-    plt.subplot(312)
-    plt.plot(Omega[0,:], abs(A_00[1,:]), linewidth=3.0)
-    plt.ylabel("A0_Reileight", fontsize=30)
-    plt.subplot(313)
-    plt.plot(Omega[0,:], abs(A_10[1,:]), linewidth=3.0)
-    plt.ylabel("A1_Reileight", fontsize=30)
-    
+#plt.figure(4)
+#for z in range(1,Nn):
+#    plt.subplot(311)
+#    plt.suptitle("Reigleight limit", fontsize=40)
+#    plt.plot(Omega[0,:], abs(R[z,:]), linewidth=3.0)
+#    plt.ylabel("R($\omega$)", fontsize=40)
+#    plt.subplot(312)
+#    plt.plot(Omega[0,:], abs(A_00[1,:]), linewidth=3.0)
+#    plt.ylabel("A0_Reileight", fontsize=30)
+#    plt.subplot(313)
+#    plt.plot(Omega[0,:], abs(A_10[1,:]), linewidth=3.0)
+#    plt.ylabel("A1_Reileight", fontsize=30)
+#    
     
 plt.figure(5)
 for z in range(1,Nn):
@@ -358,23 +358,22 @@ for ii in range(1,2):
     
 plt.figure(7)
 for ii in range(Nn):
-   
-    plt.suptitle("$A_n$ , $d = R*(1+\\beta)$", fontsize=40)
+    plt.suptitle("$A_0$ , $d = R*(1+\\beta)$", fontsize=60)
     plt.plot(abs(f/f_res) , abs(T0_LLstore[ii,:]), label=str(Beta[ii])+ "$ = \\beta $", linewidth=3.0)
-    plt.ylabel("An", fontsize=40)
+    plt.ylabel("A0", fontsize=60)
     plt.tick_params(labelsize=40)
-    plt.xlabel("$f/f_{res}$", fontsize=40)
-    plt.legend( fontsize=40, loc=(1.0,0))
+    plt.xlabel("$f/f_{res}$", fontsize=60)
+    plt.legend( fontsize=40, loc=(.9,0))
     
 
 plt.figure(8)
 for ii in range(Nn):
-    plt.suptitle("$A_1$ Kinra, $d = R*(1+\\beta)$", fontsize=40)
+    plt.suptitle("$A_1$ (analytic), $d = R*(1+\\beta)$", fontsize=60)
     plt.plot(abs(f/f_res) , abs( T1_LLstore[ii,:]), label=str(Beta[ii])+ "$= \\beta $", linewidth=3.0)
-    plt.ylabel("A1", fontsize=40)
+    plt.ylabel("A1", fontsize=60)
     plt.tick_params(labelsize=40)
-    plt.xlabel("$f/f_{res}$", fontsize=40)
-    plt.legend( fontsize=40, loc=(1.0,0))
+    plt.xlabel("$f/f_{res}$", fontsize=60)
+    plt.legend( fontsize=40, loc=(.9,0))
 #plt.figure(6)
 #plt.subplot(211)
 #plt.title("T($\omega$)", fontsize=40)
@@ -405,42 +404,38 @@ for ii in range(Nn):
 
 plt.figure(9)
 for ii in range(Nn):
-    plt.suptitle("$A_1$ Self , $d = R*(1+\\beta)$", fontsize=40)
+    plt.suptitle("$A_1$ (numerical) , $d = R*(1+\\beta)$", fontsize=60)
     plt.plot(abs(f/f_res) , abs(A1[ii,:]), label=str(Beta[ii])+ "$ = \\beta $", linewidth=3.0)
-    plt.ylabel("A1", fontsize=40)
+    plt.ylabel("A1", fontsize=60)
     plt.tick_params(labelsize=40)
-    plt.xlabel("$f/f_{res}$", fontsize=40)
-    plt.legend( fontsize=40, loc=(1.0,0))
+    plt.xlabel("$f/f_{res}$", fontsize=60)
+    plt.legend( fontsize=40, loc=(.9,0))
     
-
 plt.figure(10)
 for ii in range(Nn):
-    plt.suptitle("$B_n$, $d = R*(1+\\beta)$", fontsize=40)
+    plt.suptitle("$B_1$ (numerical), $d = R*(1+\\beta)$", fontsize=60)
     plt.plot(abs(f/f_res) , abs(B1[ii,:]), label=str(Beta[ii])+ "$= \\beta $", linewidth=3.0)
-    plt.ylabel("Bn", fontsize=40)
+    plt.ylabel("B1", fontsize=60)
     plt.tick_params(labelsize=40)
-    plt.xlabel("$f/f_{res}$", fontsize=40)
-    plt.legend( fontsize=40, loc=(1.0,0))
+    plt.xlabel("$f/f_{res}$", fontsize=60)
+    plt.legend( fontsize=40, loc=(0.9,0))
 
 plt.figure(11)
 for ii in range(Nn):
     #plt.suptitle("Transmission and reflection coefficients due to Longitudinal wave for " + Flag +" radius of particle = 0.2mm", fontsize=50)
     plt.subplot(211)
-    plt.suptitle("Transmission and reflection for rigid spheres, $d = R*(1+\\beta)$", fontsize=40)
+    plt.suptitle("Transmission and reflection for "+ Flag +" (rigid spheres), $d = R(1+\\beta)$" , fontsize=45)
     plt.plot(f/f_res,abs(T_self[ii,:]), label=str(Beta[ii])+ "$ = \\beta $", linewidth=3.0)
     plt.tick_params(labelsize=40)
     #plt.xlim(0,2.1)
-    plt.ylabel("T($\omega$)", fontsize=60)
-    plt.xlabel("f/f_res", fontsize=60)
-    plt.legend( fontsize=40, loc = 'best')
+    plt.ylabel("T", fontsize=60)
+    #plt.xlabel("f/f_res", fontsize=60)
+    plt.legend( fontsize=40, loc = 'right')
     plt.subplot(212)
     plt.plot( f/f_res ,abs(R_self[ii,:]), label=str(Beta[ii])+ "$ = \\beta $", linewidth=3.0)
     plt.tick_params(labelsize=40)
     #plt.xlim(0,2.4)
-    plt.xlabel("f/f_res", fontsize=60)
-    plt.ylabel("R($\omega$)", fontsize=60)
-    plt.legend( fontsize=40, loc = 'best')
-plt.savefig("Reflec_transmis_collectiontransmission"+ Flag +".jpg")  
-
-
-
+    plt.xlabel("$f/f_{res}$", fontsize=60)
+    plt.ylabel("R", fontsize=60)
+    plt.legend( fontsize=40, loc = 'right')
+plt.savefig("Reflec_transmis_collectiontransmissionB"+ Flag +".jpg")

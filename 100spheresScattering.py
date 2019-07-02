@@ -344,7 +344,7 @@ for N in range(Nn):
 
         
 params = {'legend.fontsize': 'x-large',
-          'figure.figsize': (25, 20),
+          'figure.figsize': (25, 22),
          'axes.labelsize': 'x-large',
          'axes.titlesize':'x-large',
          'xtick.labelsize':'x-large',
@@ -391,7 +391,7 @@ for ii in range(Nn):
     
 plt.figure(5)
 for ii in range(Nn):
-    plt.suptitle("Transmision, $d = R*(1+\\beta)$", fontsize=40)
+    plt.suptitle("Transmision, $d = R(1+\\beta)$", fontsize=40)
     plt.plot(abs(f/f_res) , abs(T[ii,:]),label=str(Beta[ii])+ "$ = \\beta $", linewidth=3.0)
     plt.legend( fontsize=40, loc=(1.0,0))
     plt.ylabel("T", fontsize=40)
@@ -403,7 +403,7 @@ plt.figure(6)
 for ii in range(Nn):
     #plt.suptitle("Transmission and reflection coefficients due to Longitudinal wave for " + Flag +" radius of particle = 0.2mm", fontsize=50)
     plt.subplot(211)
-    plt.suptitle("Transmission and reflection, $d = R(1+\\beta)$", fontsize=40)
+    plt.suptitle("Transmission and reflection using scalar addition theorem, $d = R(1+\\beta)$", fontsize=40)
     plt.plot(abs(f/f_res),abs(T[ii,:]),label=str(Beta[ii])+ "$ = \\beta $", linewidth=3.0)
     plt.tick_params(labelsize=40)
     #plt.xlim(0,2.1)
